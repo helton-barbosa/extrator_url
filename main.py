@@ -10,10 +10,7 @@ if url == "":
     raise ValueError("A URL está vazia")
 # Separa a base e os parâmetros
 indice_interrogacao = url.find('?')
-
 url_base = url[:indice_interrogacao]
-# print(f'URB base: {url_base}')
-
 url_parametros = url[indice_interrogacao+1:]
 print(f'URL parâmetros: {url_parametros}')
 
