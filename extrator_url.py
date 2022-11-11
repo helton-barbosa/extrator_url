@@ -50,13 +50,29 @@ class ExtratorURL:
     def __eq__(self, other):
         return self.url == other.url
 
-url = "https://www.bytebank.com/cambio?moedaDestino=dolar&quantidade=100&moedaOrigem=real"
+url = "https://www.bytebank.com/cambio?moedaDestino=real&quantidade=25&moedaOrigem=dolar"
 extrator_url = ExtratorURL(url)
-extrator_url_2 = ExtratorURL(url)
-print("O tamanho da URL: ", len(extrator_url))
-print(extrator_url)
-valor_quantidade = extrator_url.get_valor_parametro("quantidade")
-print(valor_quantidade)
-print(extrator_url == extrator_url_2)
-print(id(extrator_url))
-print(id(extrator_url_2))
+# extrator_url_2 = ExtratorURL(url)
+# print("O tamanho da URL: ", len(extrator_url))
+# print(extrator_url)
+# valor_quantidade = extrator_url.get_valor_parametro("quantidade")
+# print(valor_quantidade)
+# print(extrator_url == extrator_url_2)
+# print(id(extrator_url))
+# print(id(extrator_url_2))
+
+
+moeda_dolar = 5.53
+origem = extrator_url.get_valor_parametro("moedaOrigem")
+destino = extrator_url.get_valor_parametro("moedaDestino")
+valor = extrator_url.get_valor_parametro("quantidade")
+conversao = None
+
+if origem == "real" and destino == "dolar":
+    conversao = int(valor) / moeda_dolar
+    print(f'R${valor} é igual a ${str(conversao)}.')
+elif origem == "dolar" and destino == "real":
+    conversao = int(valor) * moeda_dolar
+    print(f'${valor} é igual a R${str(conversao)}.')
+else:
+    print(f"Não foi possível calcular o câmbio de {origem} para {destino}.")
